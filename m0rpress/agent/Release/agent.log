@@ -1,0 +1,7 @@
+﻿  agent.cpp
+C:\Users\mert\Documents\Projects\m0rpress\agent\agent.cpp(56,49): warning C4244: 'başlatılıyor': 'std::streamoff' - 'unsigned int' dönüşümü; veri kaybı olabilir
+  Kod üretiliyor
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 151 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Kodun üretilmesi tamamlandı
+  agent.vcxproj -> C:\Users\mert\Documents\Projects\m0rpress\agent\Release\agent.exe

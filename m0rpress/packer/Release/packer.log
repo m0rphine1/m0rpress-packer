@@ -1,0 +1,11 @@
+﻿  packer.cpp
+C:\Users\mert\Documents\Projects\m0rpress\packer\packer.cpp(140,71): warning C4244: 'bağımsız değişken': 'std::streamoff' - 'size_t' dönüşümü; veri kaybı olabilir
+C:\Users\mert\Documents\Projects\m0rpress\packer\packer.cpp(143,59): warning C4244: 'bağımsız değişken': 'std::streamoff' - 'size_t' dönüşümü; veri kaybı olabilir
+C:\Users\mert\Documents\Projects\m0rpress\packer\packer.cpp(395,52): warning C4244: 'başlatılıyor': 'std::streamoff' - 'unsigned int' dönüşümü; veri kaybı olabilir
+C:\Users\mert\Documents\Projects\m0rpress\packer\packer.cpp(463,39): warning C4244: 'bağımsız değişken': 'time_t' - 'unsigned int' dönüşümü; veri kaybı olabilir
+  Kod üretiliyor
+  2 of 251 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Kodun üretilmesi tamamlandı
+  packer.vcxproj -> C:\Users\mert\Documents\Projects\m0rpress\packer\Release\packer.exe
