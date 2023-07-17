@@ -3,4 +3,4 @@ simple-exe-x86-packer
 
 c++ simple x86 exe packer with my own encoding algorithm.
 
-its currently only supports gui and console 32-bit windows applications.
+its currently supports gui and console 32-bit windows applications.
