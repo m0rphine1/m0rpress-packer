@@ -82,10 +82,20 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             GetCenterX(50) - 2, 180, 100, 30,
             hwnd, (HMENU)idPack_BT, g_hInstance, NULL);
 
-        hConsole_CB = CreateWindow("BUTTON", "Console",
-            WS_CHILD | WS_VISIBLE | BS_CHECKBOX,
-            40, 180, 100, 30,
-            hwnd, (HMENU)idConsole_CB, g_hInstance, NULL);
+        HWND hVersion_LB = CreateWindow("STATIC", g_Version,
+            WS_CHILD | WS_VISIBLE, 270, 187, 80, 20,
+            hwnd, NULL, g_hInstance, NULL);
+
+        hTargetArch_CMB = CreateWindow(WC_COMBOBOX, TEXT(""),
+            CBS_DROPDOWNLIST | WS_CHILD | WS_VISIBLE,
+            25, 185, 100, 100, hwnd, (HMENU)idCMB1, g_hInstance, NULL);
+
+        TCHAR items[][16] = { TEXT("Win32"), TEXT("Console32")};
+        for (int i = 0; i < sizeof(items) / sizeof(items[0]); i++)
+        {
+            SendMessage(hTargetArch_CMB, CB_ADDSTRING, 0, (LPARAM)items[i]);
+        }
+        SendMessage(hTargetArch_CMB, CB_SETCURSEL, (WPARAM)0, (LPARAM)0);
 
         LOGFONT lf;
         ZeroMemory(&lf, sizeof(LOGFONT));
@@ -143,24 +153,22 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 appendToFile(outputFile, encryptedBuffer, size);
 
                 std::ofstream dosya(outputFile, std::ios::binary | std::ios::in | std::ios::out);
-                dosya.seekp(0x4C18);
+                dosya.seekp(0x4C28);
 
                 if (strcmp(key, "") != 0)
                     dosya.write(key, strlen(key));
                 else
                     dosya.put(0x00);
 
-                /*
-                dosya.seekp(0x2ED2);
-                if (cb1_isChecked)
+                dosya.seekp(0x4C26);
+                if (cmb1_index == 0)
                 {
-                    dosya.put(0x31); //dosya.write("1", 1);
-                    MessageBox(NULL, "dwa", "", MB_OK);
-                }
-                else
                     dosya.put(0x30);
-                */
-
+                }
+                else if (cmb1_index == 1)
+                {
+                    dosya.put(0x31);
+                }
 
                 dosya.close();
 
@@ -206,6 +214,20 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         case idRandom_BT:
         {
             SendMessage(hEncryptKey_TB, WM_SETTEXT, 0, (LPARAM)GenerateRandomString());
+            break;
+        }
+        case idCMB1:
+        {
+            if (HIWORD(wParam) == CBN_SELCHANGE)
+            {
+                cmb1_index = SendMessage((HWND)lParam, (UINT)CB_GETCURSEL,
+                    (WPARAM)0, (LPARAM)0);
+                /*
+                TCHAR  ListItem[256];
+                (TCHAR)SendMessage((HWND)lParam, (UINT)CB_GETLBTEXT,
+                    (WPARAM)cmb1_index, (LPARAM)ListItem);
+                    */
+            }
             break;
         }
         }

