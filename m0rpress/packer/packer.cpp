@@ -19,7 +19,7 @@ using namespace std;
 
 #define MAX_LOADSTRING 100
 
-const char g_szClassName[] = "loginClass";
+const char g_szClassName[] = "mainClass";
 HINSTANCE g_hInstance;
 
 int GetCenterX(int sizeX);
